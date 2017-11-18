@@ -1,0 +1,71 @@
+#%RAML 1.0
+title: Customers REST Services API
+version: v1
+baseUri: http://api.kkcustomers.com/{version}
+mediaType: application/json
+types:
+  Customer: !include types/Customer.raml
+  Error: !include types/Error.raml
+    
+/customers:
+  get:
+    description: List all Customers
+    responses:
+      200:
+        body:
+          application/json:
+            type: Customer[]
+            example: !include examples/customers.json
+              
+  post:
+    description: Create a new Customer
+    body:
+      application/json:
+        type: Customer
+        example: !include examples/customer.json
+    responses:
+      201:
+        body:
+          application/json:
+            type: Customer
+            example: !include examples/customer.json
+  /{customerid}:
+    get:
+      description: Get a Customer by id
+      responses:
+        200:
+          body:
+            application/json:
+              type: Customer
+              example: !include examples/customer.json
+        404:
+          body:
+            application/json:
+              type: Error
+              example: !include examples/error.json
+    put:
+      description: Update a Customer by id
+      body:
+        application/json:
+          type: Customer
+          example: !include examples/customer.json
+      responses:
+        200:
+          body:
+            application/json:
+              type: Customer
+              example: !include examples/customer.json
+        404:
+          body:
+            application/json:
+              type: Error
+              example: !include examples/error.json
+    delete:
+      description: Delete a Customer by id
+      responses:
+        204:
+        404:
+          body:
+            application/json:
+              type: Error
+              example: !include examples/error.json

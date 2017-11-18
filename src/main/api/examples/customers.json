@@ -1,0 +1,4 @@
+[
+  { "id" : 1, "firstname" : "John", "lastname" : "Doe" , "address" : "Ruthven Street 5, Wellington 1065"},
+  { "id" : 2, "firstname" : "Jane", "lastname" : "Smith" , "address" : "Myers Grove 5, Auckland 1294"}
+]
