@@ -8,7 +8,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
     <http:listener-config name="customersApi-httpListenerConfig" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
     <apikit:config name="customersApi-config" raml="customersApi.raml" consoleEnabled="false" doc:name="Router"/>
-    <objectstore:config name="ObjectStore__Connector" partition="customerPartition" objectStore-ref="_defaultUserObjectStore" doc:name="ObjectStore: Connector"/>
+    <objectstore:config name="ObjectStore__Connector" partition="customerPartition"  doc:name="ObjectStore: Connector"/>
     <flow name="customersApi-main">
         <http:listener config-ref="customersApi-httpListenerConfig" path="/api/*" doc:name="HTTP"/>
         <apikit:router config-ref="customersApi-config" doc:name="APIkit Router"/>
@@ -45,7 +45,7 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
 %output application/json
 ---
 {
-  "Id": 7,
+  "Id": payload.id,
   "First name:": payload.firstname,
   "Last name": payload.lastname,
   "Address": payload.address
